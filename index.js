@@ -10,9 +10,8 @@ app.use(cors());
 app.use(express.json());
 
 
-console.log(process.env.DB_PASS)
-
-
+//libraryManagementSystem
+//categories
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.s1bw0ez.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -29,6 +28,22 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    // 4 category related api collection
+    const categoriesCollection = client.db('libraryManagementSystem').collection('categories');
+
+    
+    //4 category related api
+    app.get('/categories', async(req,res)=>{
+        const cursor = categoriesCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    });
+
+
+
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB! Alhumdulilah!");
