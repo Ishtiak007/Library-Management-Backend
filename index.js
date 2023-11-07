@@ -32,6 +32,7 @@ async function run() {
     // 4 category related api collection
     const categoriesCollection = client.db('libraryManagementSystem').collection('categories');
     const booksCollection = client.db('libraryManagementSystem').collection('allBooks');
+    const bookBorrowerCollection = client.db('libraryManagementSystem').collection('bookBorrower');
 
 
     //4 category related api
@@ -76,6 +77,13 @@ async function run() {
         const result = await booksCollection.updateOne(filter,newBook, options)
         res.send(result);
     });
+
+    // bookBorrower related API
+    app.post('/bookBorrower',async(req,res)=>{
+        const borrower = req.body;
+        const result = await bookBorrowerCollection.insertOne(borrower);
+        res.send(result);
+    })
 
 
 
