@@ -83,7 +83,15 @@ async function run() {
         const borrower = req.body;
         const result = await bookBorrowerCollection.insertOne(borrower);
         res.send(result);
-    })
+    });
+    app.get('/bookBorrower',async (req,res)=>{
+          let query = {}
+          if(req.query?.email){
+              query = {email : req.query.email}
+          }
+          const result = await bookBorrowerCollection.find(query).toArray();
+          res.send(result);
+      })
 
 
 
