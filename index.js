@@ -91,7 +91,13 @@ async function run() {
           }
           const result = await bookBorrowerCollection.find(query).toArray();
           res.send(result);
-      })
+      });
+      app.delete('/bookBorrower/:id',async(req,res)=>{
+        const id = req.params.id;
+        const query = {_id : new ObjectId(id)}
+        const result = await bookBorrowerCollection.deleteOne(query)
+        res.send(result)
+    })
 
 
 
