@@ -12,7 +12,8 @@ app.use(cors({
     origin : [
         // 'http://localhost:5173'
         'https://library-management-syste-e5864.web.app',
-        'https://library-management-syste-e5864.firebaseapp.com'
+        'https://library-management-syste-e5864.firebaseapp.com',
+        'https://incomparable-chimera-840827.netlify.app'
     ],
     credentials: true
 }));
@@ -61,8 +62,6 @@ const logger =(req,res,next)=>{
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    // await client.connect();
 
     // 4 category related api collection
     const categoriesCollection = client.db('libraryManagementSystem').collection('categories');
